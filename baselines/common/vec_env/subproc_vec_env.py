@@ -1,7 +1,7 @@
 import numpy as np
 from multiprocessing import Process, Pipe
 from baselines.common.vec_env import VecEnv, CloudpickleWrapper
-from baselines.common.tile_images import tile_images
+#from baselines.common.tile_images import tile_images
 
 
 def worker(remote, parent_remote, env_fn_wrapper):
@@ -86,7 +86,7 @@ class SubprocVecEnv(VecEnv):
         for pipe in self.remotes:
             pipe.send(('render', None))
         imgs = [pipe.recv() for pipe in self.remotes]
-        bigimg = tile_images(imgs)
+        #bigimg = tile_images(imgs)
         if mode == 'human':
             import cv2
             cv2.imshow('vecenv', bigimg[:,:,::-1])
